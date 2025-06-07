@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>菜单 - 绿色餐厅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .container {
+            display: flex;
+            height: 100vh;
+            padding-bottom: 50px;
+            overflow: hidden;
+        }
+        .search-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            z-index: 100;
+        }
+        .search-input {
+            width: 100%;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.9);
+            font-size: 14px;
+        }
+        .category-list {
+            width: 25%;
+            margin-top: 50px;
+            background-color: #f8f8f8;
+            overflow-y: auto;
+        }
+        .category-item {
+            padding: 15px 10px;
+            text-align: center;
+            border-bottom: 1px solid #eaeaea;
+            color: #666;
+        }
+        .category-item.active {
+            background-color: #fff;
+            color: #4CAF50;
+            font-weight: bold;
+            border-left: 3px solid #4CAF50;
+        }
+        .dish-list {
+            width: 75%;
+            margin-top: 50px;
+            overflow-y: auto;
+            padding: 10px;
+        }
+        .dish-item {
+            display: flex;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .dish-image {
+            width: 80px;
+            height: 80px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        .dish-info {
+            flex: 1;
+            padding-left: 10px;
+        }
+        .dish-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .dish-price {
+            color: #FF5722;
+            font-weight: bold;
+        }
+        .dish-actions {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity {
+            margin: 0 8px;
+            min-width: 15px;
+            text-align: center;
+        }
+        .add-btn {
+            padding: 5px 12px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 15px;
+            font-size: 14px;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .tab-item {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            color: #666;
+        }
+        .tab-item.active {
+            color: #4CAF50;
+        }
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .tab-text {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-bar">
+        <input type="text" class="search-input" placeholder="搜索菜品...">
+    </div>
+    
+    <div class="container">
+        <div class="category-list">
+            <div class="category-item active">全部</div>
+            <div class="category-item">热销</div>
+            <div class="category-item">主食</div>
+            <div class="category-item">小吃</div>
+            <div class="category-item">饮品</div>
+            <div class="category-item">套餐</div>
+            <div class="category-item">甜品</div>
+        </div>
+        
+        <div class="dish-list">
+            <div class="dish-item">
+                <img src="images/beef_noodles.png" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">招牌牛肉面</div>
+                    <div class="dish-price">¥28.00</div>
+                </div>
+                <div class="dish-actions">
+                    <div class="quantity-control" style="display: none;">
+                        <button class="quantity-btn">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+            
+            <div class="dish-item">
+                <img src="images/hamburger.png" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">香辣鸡腿堡</div>
+                    <div class="dish-price">¥22.00</div>
+                </div>
+                <div class="dish-actions">
+                    <div class="quantity-control">
+                        <button class="quantity-btn">-</button>
+                        <span class="quantity">2</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="dish-item">
+                <img src="images/juice.png" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">鲜榨橙汁</div>
+                    <div class="dish-price">¥15.00</div>
+                </div>
+                <div class="dish-actions">
+                    <div class="quantity-control" style="display: none;">
+                        <button class="quantity-btn">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+            
+            <div class="dish-item">
+                <img src="images/salad.png" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">蔬菜沙拉</div>
+                    <div class="dish-price">¥18.00</div>
+                </div>
+                <div class="dish-actions">
+                    <div class="quantity-control" style="display: none;">
+                        <button class="quantity-btn">-</button>
+                        <span class="quantity">1</span>
+                        <button class="quantity-btn">+</button>
+                    </div>
+                    <button class="add-btn">+</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <div class="tab-icon">🍔</div>
+            <div class="tab-text">菜单</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">🛒</div>
+            <div class="tab-text">购物车</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+</body>
+</html>

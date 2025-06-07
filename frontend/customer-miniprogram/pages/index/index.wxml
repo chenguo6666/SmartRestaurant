@@ -1,0 +1,45 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- 餐厅品牌区域 -->
+  <view class="brand-section">
+    <view class="restaurant-logo">
+      <image src="../../images/default-dish.png" class="logo-img" mode="aspectFit"></image>
+    </view>
+    <view class="restaurant-name">智能餐厅</view>
+    <view class="restaurant-slogan">美味触手可及</view>
+  </view>
+
+  <!-- 功能入口区域 -->
+  <view class="action-section">
+    <button class="primary-btn" bindtap="goToMenu">
+      <text class="btn-text">开始点餐</text>
+      <text class="btn-desc">浏览菜单，选择美食</text>
+    </button>
+    
+    <button class="secondary-btn" bindtap="goToCart">
+      <text class="btn-text">购物车</text>
+      <text class="btn-desc">查看已选商品</text>
+    </button>
+  </view>
+
+  <!-- 餐厅信息区域 -->
+  <view class="info-section">
+    <view class="info-item">
+      <text class="info-label">营业时间</text>
+      <text class="info-value">09:00 - 22:00</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">联系电话</text>
+      <text class="info-value">400-888-6666</text>
+    </view>
+    <view class="info-item">
+      <text class="info-label">餐厅地址</text>
+      <text class="info-value">北京市朝阳区智能大厦1层</text>
+    </view>
+  </view>
+
+  <!-- 底部装饰 -->
+  <view class="footer-section">
+    <text class="footer-text">欢迎来到智能餐厅</text>
+  </view>
+</view>

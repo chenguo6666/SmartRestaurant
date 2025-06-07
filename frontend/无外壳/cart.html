@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>购物车 - 绿色餐厅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 100;
+        }
+        .header-title {
+            font-weight: bold;
+        }
+        .clear-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 14px;
+        }
+        .cart-container {
+            padding: 50px 0 100px;
+        }
+        .cart-empty {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 60vh;
+            color: #999;
+        }
+        .cart-empty-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+            color: #ccc;
+        }
+        .cart-empty-text {
+            font-size: 16px;
+        }
+        .cart-item {
+            display: flex;
+            padding: 12px 15px;
+            margin: 10px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            align-items: center;
+        }
+        .cart-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .cart-item-info {
+            flex: 1;
+        }
+        .cart-item-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .cart-item-price {
+            color: #FF5722;
+            font-weight: bold;
+        }
+        .cart-item-actions {
+            display: flex;
+            align-items: center;
+        }
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+        }
+        .quantity-btn {
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .quantity {
+            margin: 0 8px;
+            min-width: 15px;
+            text-align: center;
+        }
+        .delete-btn {
+            color: #999;
+            font-size: 18px;
+            background: none;
+            border: none;
+        }
+        .checkout-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 90;
+        }
+        .total-price {
+            font-size: 18px;
+            color: #FF5722;
+            font-weight: bold;
+        }
+        .checkout-btn {
+            padding: 10px 25px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .tab-item {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            color: #666;
+        }
+        .tab-item.active {
+            color: #4CAF50;
+        }
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .tab-text {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">购物车</div>
+        <button class="clear-btn">清空</button>
+    </div>
+    
+    <div class="cart-container">
+        <!-- 购物车有商品时的状态 -->
+        <div class="cart-item">
+            <img src="images/beef_noodles.png" alt="招牌牛肉面" class="cart-item-image">
+            <div class="cart-item-info">
+                <div class="cart-item-name">招牌牛肉面</div>
+                <div class="cart-item-price">¥28.00</div>
+            </div>
+            <div class="cart-item-actions">
+                <div class="quantity-control">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">1</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+                <button class="delete-btn">×</button>
+            </div>
+        </div>
+        
+        <div class="cart-item">
+            <img src="images/hamburger.png" alt="香辣鸡腿堡" class="cart-item-image">
+            <div class="cart-item-info">
+                <div class="cart-item-name">香辣鸡腿堡</div>
+                <div class="cart-item-price">¥22.00</div>
+            </div>
+            <div class="cart-item-actions">
+                <div class="quantity-control">
+                    <button class="quantity-btn">-</button>
+                    <span class="quantity">2</span>
+                    <button class="quantity-btn">+</button>
+                </div>
+                <button class="delete-btn">×</button>
+            </div>
+        </div>
+        
+        <!-- 购物车为空时的状态 -->
+        <!--
+        <div class="cart-empty">
+            <div class="cart-empty-icon">🛒</div>
+            <div class="cart-empty-text">购物车还是空的，快去点餐吧~</div>
+        </div>
+        -->
+    </div>
+    
+    <div class="checkout-bar">
+        <div>
+            <span>合计：</span>
+            <span class="total-price">¥72.00</span>
+        </div>
+        <button class="checkout-btn">去结算</button>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon">🍔</div>
+            <div class="tab-text">菜单</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon">🛒</div>
+            <div class="tab-text">购物车</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+</body>
+</html>

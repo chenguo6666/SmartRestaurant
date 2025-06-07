@@ -1,0 +1,283 @@
+/* menu.wxss */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 搜索栏样式 */
+.search-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: 20rpx 30rpx;
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  z-index: 100;
+}
+
+.search-input-wrapper {
+  position: relative;
+}
+
+.search-input {
+  width: 100%;
+  padding: 16rpx 30rpx;
+  border-radius: 40rpx;
+  border: none;
+  background-color: rgba(255, 255, 255, 0.95);
+  font-size: 28rpx;
+  color: #333;
+}
+
+.search-input::placeholder {
+  color: #999;
+}
+
+/* 主容器 */
+.container {
+  display: flex;
+  height: 100vh;
+  margin-top: 100rpx; /* 为搜索栏留出空间 */
+  padding-bottom: 98rpx; /* 为tabBar留出空间 */
+}
+
+/* 分类列表 */
+.category-list {
+  width: 25%;
+  background-color: #f8f8f8;
+  height: 100%;
+}
+
+.category-item {
+  padding: 30rpx 20rpx;
+  text-align: center;
+  border-bottom: 1rpx solid #eaeaea;
+  color: #666;
+  font-size: 26rpx;
+  transition: all 0.3s ease;
+}
+
+.category-item.active {
+  background-color: #fff;
+  color: #4CAF50;
+  font-weight: bold;
+  border-left: 6rpx solid #4CAF50;
+  position: relative;
+}
+
+.category-item.active::before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 0;
+  height: 0;
+  border-left: 20rpx solid #fff;
+  border-top: 15rpx solid transparent;
+  border-bottom: 15rpx solid transparent;
+}
+
+/* 菜品列表 */
+.dish-list {
+  width: 75%;
+  height: 100%;
+  padding: 20rpx;
+}
+
+.dish-item {
+  display: flex;
+  padding: 20rpx;
+  margin-bottom: 20rpx;
+  background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s ease;
+}
+
+.dish-item:active {
+  transform: scale(0.98);
+}
+
+.dish-image {
+  width: 120rpx;
+  height: 120rpx;
+  border-radius: 12rpx;
+  flex-shrink: 0;
+}
+
+.dish-info {
+  flex: 1;
+  padding-left: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dish-name {
+  font-weight: bold;
+  font-size: 30rpx;
+  color: #333;
+  margin-bottom: 8rpx;
+  line-height: 1.3;
+}
+
+.dish-desc {
+  font-size: 24rpx;
+  color: #666;
+  margin-bottom: 8rpx;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.dish-price {
+  font-size: 32rpx;
+  font-weight: bold;
+}
+
+/* 菜品操作区域 */
+.dish-actions {
+  display: flex;
+  align-items: center;
+  margin-left: 20rpx;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 40rpx;
+  padding: 4rpx;
+}
+
+.quantity-btn {
+  width: 48rpx;
+  height: 48rpx;
+  border-radius: 50%;
+  border: none;
+  font-size: 32rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.decrease-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.increase-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.quantity {
+  margin: 0 16rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+  min-width: 30rpx;
+  text-align: center;
+  color: #333;
+}
+
+.add-btn {
+  padding: 10rpx 24rpx;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 30rpx;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 购物车浮动按钮 */
+.cart-float-btn {
+  position: fixed;
+  bottom: 140rpx;
+  right: 30rpx;
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  border-radius: 50rpx;
+  padding: 20rpx 30rpx;
+  display: flex;
+  align-items: center;
+  box-shadow: 0 8rpx 24rpx rgba(76, 175, 80, 0.4);
+  z-index: 99;
+}
+
+.cart-icon {
+  font-size: 36rpx;
+  margin-right: 12rpx;
+}
+
+.cart-badge {
+  position: absolute;
+  top: -8rpx;
+  left: -8rpx;
+  background-color: #ff4444;
+  color: white;
+  border-radius: 20rpx;
+  padding: 4rpx 8rpx;
+  font-size: 20rpx;
+  min-width: 32rpx;
+  text-align: center;
+}
+
+.cart-amount {
+  color: white;
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 加载和状态提示 */
+.load-more, .no-more {
+  text-align: center;
+  padding: 40rpx 0;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 100rpx 40rpx;
+}
+
+.empty-image {
+  width: 200rpx;
+  height: 200rpx;
+  margin-bottom: 30rpx;
+  opacity: 0.6;
+}
+
+.empty-text {
+  font-size: 28rpx;
+}
+
+/* 加载遮罩 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.loading-content {
+  background-color: white;
+  padding: 40rpx 60rpx;
+  border-radius: 12rpx;
+  color: #333;
+  font-size: 28rpx;
+} 

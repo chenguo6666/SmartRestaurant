@@ -1,0 +1,164 @@
+<!--menu.wxml-->
+<view class="page-container">
+  <!-- 搜索栏 -->
+  <view class="search-bar">
+    <view class="search-input-wrapper">
+      <input 
+        class="search-input" 
+        placeholder="搜索菜品..." 
+        value="{{searchKeyword}}"
+        bindinput="onSearchInput"
+      />
+    </view>
+  </view>
+  
+  <!-- 主体内容 -->
+  <view class="container">
+    <!-- 分类列表 -->
+    <scroll-view class="category-list" scroll-y>
+      <view 
+        class="category-item {{selectedCategoryId === item.id ? 'active' : ''}}"
+        wx:for="{{categories}}" 
+        wx:key="id"
+        data-id="{{item.id}}"
+        bindtap="onCategorySelect"
+      >
+        {{item.name}}
+      </view>
+    </scroll-view>
+    
+    <!-- 菜品列表 -->
+    <scroll-view class="dish-list" scroll-y bindscrolltolower="onLoadMore">
+      <view class="dish-item card" wx:for="{{filteredDishes}}" wx:key="id">
+        <image 
+          class="dish-image" 
+          src="{{item.image_url || '/images/default-dish.png'}}" 
+          mode="aspectFill"
+          bindtap="onDishTap"
+          data-id="{{item.id}}"
+        />
+        
+        <view class="dish-info">
+          <view class="dish-name">{{item.name}}</view>
+          <view class="dish-desc" wx:if="{{item.description}}">{{item.description}}</view>
+          
+          <!-- 价格信息 -->
+          <view class="price-wrapper">
+            <text class="dish-price price">¥{{item.price}}</text>
+            <text class="original-price" wx:if="{{item.original_price}}">¥{{item.original_price}}</text>
+          </view>
+          
+          <!-- 辣度标签 -->
+          <view class="spicy-level" wx:if="{{item.spicy_level > 0}}">
+            <text class="spicy-text">{{item.spicy_level_display}}</text>
+          </view>
+          
+          <!-- 推荐标签 -->
+          <view class="recommend-tag" wx:if="{{item.is_recommended}}">
+            <text class="recommend-text">推荐</text>
+          </view>
+        </view>
+        
+        <view class="dish-actions">
+          <!-- 获取当前菜品在购物车中的数量 -->
+          <view class="quantity-display" hidden="{{true}}">
+            <wxs module="cartHelper">
+              function getItemCount(cartItems, dishId) {
+                for (var i = 0; i < cartItems.length; i++) {
+                  if (cartItems[i].id === dishId) {
+                    return cartItems[i].quantity;
+                  }
+                }
+                return 0;
+              }
+              module.exports = { getItemCount: getItemCount };
+            </wxs>
+          </view>
+          
+          <!-- 已有数量时显示数量控制器 -->
+          <view class="quantity-control" wx:if="{{cartHelper.getItemCount(cartItems, item.id) > 0}}">
+            <button 
+              class="quantity-btn decrease-btn" 
+              data-id="{{item.id}}"
+              bindtap="onReduceCart"
+            >-</button>
+            <text class="quantity">{{cartHelper.getItemCount(cartItems, item.id)}}</text>
+            <button 
+              class="quantity-btn increase-btn" 
+              data-id="{{item.id}}"
+              bindtap="onIncreaseCart"
+            >+</button>
+          </view>
+          
+          <!-- 未加购时显示加号按钮 -->
+          <button 
+            class="add-btn btn-primary" 
+            wx:else
+            data-dish="{{item}}"
+            bindtap="onAddToCart"
+            disabled="{{!item.is_in_stock}}"
+          >{{item.is_in_stock ? '+' : '售完'}}</button>
+        </view>
+      </view>
+      
+      <!-- 加载更多提示 -->
+      <view class="load-more" wx:if="{{hasMore && !loading}}">
+        <text class="text-muted">上拉加载更多...</text>
+      </view>
+      
+      <!-- 加载中 -->
+      <view class="loading-more" wx:if="{{loading}}">
+        <text class="text-muted">加载中...</text>
+      </view>
+      
+      <!-- 没有更多数据 -->
+      <view class="no-more" wx:if="{{!hasMore && filteredDishes.length > 0 && !loading}}">
+        <text class="text-muted">没有更多菜品了</text>
+      </view>
+      
+      <!-- 空状态 -->
+      <view class="empty-state" wx:if="{{filteredDishes.length === 0 && !loading}}">
+        <image class="empty-image" src="/images/empty-dish.png" mode="aspectFit" />
+        <text class="empty-text text-muted">{{searchKeyword ? '未找到相关菜品' : '暂无菜品'}}</text>
+      </view>
+    </scroll-view>
+  </view>
+  
+  <!-- 购物车浮动按钮 -->
+  <view class="cart-float-btn" wx:if="{{cartItems.length > 0}}" bindtap="goToCart">
+    <view class="cart-icon">🛒</view>
+    <view class="cart-badge" wx:if="{{cartItems.length > 0}}">
+      <wxs module="cartTotal">
+        function getTotalCount(cartItems) {
+          var total = 0;
+          for (var i = 0; i < cartItems.length; i++) {
+            total += cartItems[i].quantity;
+          }
+          return total;
+        }
+        
+        function getTotalAmount(cartItems) {
+          var total = 0;
+          for (var i = 0; i < cartItems.length; i++) {
+            total += cartItems[i].price * cartItems[i].quantity;
+          }
+          return total.toFixed(2);
+        }
+        
+        module.exports = { 
+          getTotalCount: getTotalCount,
+          getTotalAmount: getTotalAmount 
+        };
+      </wxs>
+      {{cartTotal.getTotalCount(cartItems)}}
+    </view>
+    <view class="cart-amount">¥{{cartTotal.getTotalAmount(cartItems)}}</view>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-overlay" wx:if="{{loading}}">
+  <view class="loading-content">
+    <text>加载中...</text>
+  </view>
+</view> 

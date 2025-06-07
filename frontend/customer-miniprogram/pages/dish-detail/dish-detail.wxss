@@ -1,0 +1,463 @@
+/* dish-detail.wxss */
+.page-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* 顶部图片区域 */
+.header-section {
+  position: relative;
+  width: 100%;
+  height: 500rpx;
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+}
+
+.dish-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.image-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 40rpx 30rpx 30rpx 30rpx;
+}
+
+.back-btn {
+  width: 60rpx;
+  height: 60rpx;
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 40rpx;
+  font-weight: bold;
+}
+
+.recommend-badge {
+  background: linear-gradient(45deg, #FF6B35, #FF8A50);
+  padding: 8rpx 16rpx;
+  border-radius: 30rpx;
+  box-shadow: 0 4rpx 12rpx rgba(255, 107, 53, 0.3);
+}
+
+.recommend-text {
+  color: white;
+  font-size: 24rpx;
+  font-weight: bold;
+}
+
+/* 内容区域 */
+.content-section {
+  flex: 1;
+  padding: 30rpx;
+  margin-top: -40rpx;
+  position: relative;
+  z-index: 10;
+}
+
+/* 信息卡片 */
+.info-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.dish-header {
+  margin-bottom: 20rpx;
+}
+
+.dish-name {
+  font-size: 36rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 8rpx;
+  line-height: 1.3;
+}
+
+.dish-category {
+  font-size: 26rpx;
+  color: #4CAF50;
+  font-weight: 500;
+}
+
+/* 价格区域 */
+.price-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.current-price {
+  font-size: 40rpx;
+  font-weight: bold;
+  color: #FF5722;
+  margin-right: 16rpx;
+}
+
+.original-price {
+  font-size: 28rpx;
+  color: #999;
+  text-decoration: line-through;
+  margin-right: 16rpx;
+}
+
+.discount-tag {
+  background: linear-gradient(45deg, #FF6B35, #FF8A50);
+  padding: 4rpx 12rpx;
+  border-radius: 16rpx;
+}
+
+.discount-text {
+  color: white;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+/* 标签区域 */
+.tags-section {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20rpx;
+  flex-wrap: wrap;
+}
+
+.spicy-tag {
+  background-color: #FFE0B2;
+  padding: 6rpx 12rpx;
+  border-radius: 16rpx;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+.spicy-text {
+  color: #FF8A65;
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.custom-tags {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.tag-item {
+  background-color: #E8F5E8;
+  color: #4CAF50;
+  font-size: 22rpx;
+  padding: 6rpx 12rpx;
+  border-radius: 16rpx;
+  margin-right: 12rpx;
+  margin-bottom: 8rpx;
+}
+
+/* 统计区域 */
+.stats-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 20rpx;
+  border-top: 1rpx solid #f0f0f0;
+}
+
+.stat-item {
+  display: flex;
+  align-items: center;
+}
+
+.stat-label {
+  font-size: 24rpx;
+  color: #666;
+  margin-right: 8rpx;
+}
+
+.stat-value {
+  font-size: 26rpx;
+  font-weight: bold;
+  color: #333;
+}
+
+.stock-status {
+  padding: 6rpx 12rpx;
+  border-radius: 16rpx;
+}
+
+.stock-text {
+  font-size: 22rpx;
+  font-weight: bold;
+}
+
+.stock-text:not(.out-of-stock) {
+  color: #4CAF50;
+  background-color: #E8F5E8;
+  padding: 6rpx 12rpx;
+  border-radius: 16rpx;
+}
+
+.out-of-stock {
+  color: #F44336;
+  background-color: #FFEBEE;
+  padding: 6rpx 12rpx;
+  border-radius: 16rpx;
+}
+
+/* 描述卡片 */
+.description-card, .nutrition-card, .recommend-card {
+  background-color: #fff;
+  border-radius: 20rpx;
+  padding: 30rpx;
+  margin-bottom: 20rpx;
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.08);
+}
+
+.card-title {
+  font-size: 32rpx;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 20rpx;
+  position: relative;
+  padding-left: 20rpx;
+}
+
+.card-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6rpx;
+  height: 28rpx;
+  background-color: #4CAF50;
+  border-radius: 3rpx;
+}
+
+.description-text {
+  font-size: 28rpx;
+  color: #666;
+  line-height: 1.6;
+}
+
+/* 营养信息 */
+.nutrition-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.nutrition-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.nutrition-item:last-child {
+  border-bottom: none;
+}
+
+.nutrition-name {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.nutrition-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 推荐区域 */
+.recommend-list {
+  display: flex;
+  white-space: nowrap;
+}
+
+.recommend-item {
+  display: inline-block;
+  width: 200rpx;
+  margin-right: 20rpx;
+  text-align: center;
+}
+
+.recommend-image {
+  width: 100%;
+  height: 160rpx;
+  border-radius: 12rpx;
+  margin-bottom: 12rpx;
+}
+
+.recommend-name {
+  font-size: 24rpx;
+  color: #333;
+  margin-bottom: 6rpx;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.recommend-price {
+  font-size: 26rpx;
+  color: #FF5722;
+  font-weight: bold;
+}
+
+/* 底部操作区域 */
+.bottom-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  padding: 20rpx 30rpx;
+  padding-bottom: calc(20rpx + env(safe-area-inset-bottom));
+  box-shadow: 0 -4rpx 20rpx rgba(0, 0, 0, 0.1);
+  z-index: 100;
+}
+
+.quantity-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20rpx;
+}
+
+.quantity-label {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  background-color: #f8f8f8;
+  border-radius: 40rpx;
+  padding: 8rpx;
+}
+
+.quantity-btn {
+  width: 56rpx;
+  height: 56rpx;
+  border-radius: 50%;
+  border: none;
+  font-size: 32rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.decrease-btn {
+  background-color: #f0f0f0;
+  color: #666;
+}
+
+.decrease-btn[disabled] {
+  background-color: #f5f5f5;
+  color: #ccc;
+}
+
+.increase-btn {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.increase-btn[disabled] {
+  background-color: #ccc;
+  color: #999;
+}
+
+.quantity-text {
+  margin: 0 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  min-width: 40rpx;
+  text-align: center;
+  color: #333;
+}
+
+.action-buttons {
+  display: flex;
+}
+
+.cart-btn {
+  flex: 1;
+  height: 88rpx;
+  background: linear-gradient(135deg, #4CAF50, #66BB6A);
+  color: white;
+  border: none;
+  border-radius: 44rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6rpx 20rpx rgba(76, 175, 80, 0.3);
+}
+
+.cart-btn[disabled] {
+  background: #ccc;
+  box-shadow: none;
+}
+
+.cart-btn .btn-text {
+  margin-right: 12rpx;
+}
+
+.btn-price {
+  font-size: 28rpx;
+  font-weight: bold;
+}
+
+/* 加载状态 */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.loading-content {
+  background-color: #fff;
+  padding: 40rpx;
+  border-radius: 16rpx;
+  color: #333;
+  font-size: 28rpx;
+}
+
+/* 响应式适配 */
+@media (max-width: 320px) {
+  .header-section {
+    height: 400rpx;
+  }
+  
+  .dish-name {
+    font-size: 32rpx;
+  }
+  
+  .current-price {
+    font-size: 36rpx;
+  }
+} 

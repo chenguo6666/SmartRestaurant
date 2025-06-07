@@ -1,0 +1,131 @@
+<!--dish-detail.wxml-->
+<view class="page-container">
+  <!-- 顶部图片区域 -->
+  <view class="header-section">
+    <image 
+      class="dish-image" 
+      src="{{dish.image_url || '/images/default-dish.png'}}" 
+      mode="aspectFill"
+    />
+    <view class="image-overlay">
+      <!-- 返回按钮 -->
+      <view class="back-btn" bindtap="goBack">
+        <text class="iconfont">‹</text>
+      </view>
+      
+      <!-- 推荐标签 -->
+      <view class="recommend-badge" wx:if="{{dish.is_recommended}}">
+        <text class="recommend-text">推荐</text>
+      </view>
+    </view>
+  </view>
+
+  <!-- 菜品信息区域 -->
+  <view class="content-section">
+    <!-- 基本信息 -->
+    <view class="info-card">
+      <view class="dish-header">
+        <view class="dish-name">{{dish.name || '菜品详情'}}</view>
+        <view class="dish-category">{{dish.category_name}}</view>
+      </view>
+      
+      <!-- 价格区域 -->
+      <view class="price-section">
+        <view class="current-price">¥{{dish.price || '0.00'}}</view>
+        <view class="original-price" wx:if="{{dish.original_price}}">¥{{dish.original_price}}</view>
+        <view class="discount-tag" wx:if="{{dish.discount_rate > 0}}">
+          <text class="discount-text">{{dish.discount_rate}}折</text>
+        </view>
+      </view>
+
+      <!-- 标签区域 -->
+      <view class="tags-section" wx:if="{{dish.spicy_level > 0 || dish.tags}}">
+        <view class="spicy-tag" wx:if="{{dish.spicy_level > 0}}">
+          <text class="spicy-text">{{dish.spicy_level_display}}</text>
+        </view>
+        <view class="custom-tags" wx:if="{{dish.tags}}">
+          <view class="tag-item" wx:for="{{tagsList}}" wx:key="*this">{{item}}</view>
+        </view>
+      </view>
+
+      <!-- 销量和库存信息 -->
+      <view class="stats-section">
+        <view class="stat-item">
+          <text class="stat-label">已售</text>
+          <text class="stat-value">{{dish.sales_count || 0}}</text>
+        </view>
+        <view class="stock-status">
+          <text class="stock-text" wx:if="{{dish.is_in_stock}}">有货</text>
+          <text class="stock-text out-of-stock" wx:else>缺货</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 菜品描述 -->
+    <view class="description-card" wx:if="{{dish.description}}">
+      <view class="card-title">菜品介绍</view>
+      <view class="description-text">{{dish.description}}</view>
+    </view>
+
+    <!-- 营养信息（可选） -->
+    <view class="nutrition-card" wx:if="{{nutritionInfo}}">
+      <view class="card-title">营养信息</view>
+      <view class="nutrition-list">
+        <view class="nutrition-item" wx:for="{{nutritionInfo}}" wx:key="name">
+          <text class="nutrition-name">{{item.name}}</text>
+          <text class="nutrition-value">{{item.value}}</text>
+        </view>
+      </view>
+    </view>
+
+    <!-- 相关推荐 -->
+    <view class="recommend-card" wx:if="{{relatedDishes.length > 0}}">
+      <view class="card-title">相关推荐</view>
+      <scroll-view class="recommend-list" scroll-x>
+        <view class="recommend-item" wx:for="{{relatedDishes}}" wx:key="id" bindtap="onRecommendTap" data-id="{{item.id}}">
+          <image class="recommend-image" src="{{item.image_url || '/images/default-dish.png'}}" mode="aspectFill" />
+          <view class="recommend-name">{{item.name}}</view>
+          <view class="recommend-price">¥{{item.price}}</view>
+        </view>
+      </scroll-view>
+    </view>
+  </view>
+
+  <!-- 底部操作区域 -->
+  <view class="bottom-section">
+    <view class="quantity-section">
+      <view class="quantity-label">数量</view>
+      <view class="quantity-control">
+        <button 
+          class="quantity-btn decrease-btn" 
+          bindtap="onDecreaseQuantity"
+          disabled="{{quantity <= 1}}"
+        >-</button>
+        <text class="quantity-text">{{quantity}}</text>
+        <button 
+          class="quantity-btn increase-btn" 
+          bindtap="onIncreaseQuantity"
+          disabled="{{!dish.is_in_stock}}"
+        >+</button>
+      </view>
+    </view>
+    
+    <view class="action-buttons">
+      <button 
+        class="cart-btn" 
+        bindtap="onAddToCart"
+        disabled="{{!dish.is_in_stock}}"
+      >
+        <text class="btn-text">加入购物车</text>
+        <text class="btn-price">¥{{totalPrice}}</text>
+      </button>
+    </view>
+  </view>
+</view>
+
+<!-- 加载状态 -->
+<view class="loading-overlay" wx:if="{{loading}}">
+  <view class="loading-content">
+    <text>加载中...</text>
+  </view>
+</view> 

@@ -1,0 +1,63 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+smart_restaurant_env/
+
+# Django
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# 媒体文件
+media/
+
+# 静态文件
+staticfiles/
+
+# 环境变量
+.env
+.env.local
+.env.production
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 数据库备份
+*.sql
+*.dump
+
+# 日志文件
+logs/
+*.log
+
+# 缓存
+.cache/
+.pytest_cache/
+
+# 覆盖率报告
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover
+.hypothesis/
+
+# 翻译
+*.mo
+*.pot
+
+# 本地配置
+local_settings.py 

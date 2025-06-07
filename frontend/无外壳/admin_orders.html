@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>订单管理 - 绿色餐厅管理端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            z-index: 100;
+        }
+        .header-title {
+            font-weight: bold;
+        }
+        .order-tabs {
+            display: flex;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            z-index: 90;
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        .order-tab {
+            padding: 12px 15px;
+            border-bottom: 2px solid transparent;
+        }
+        .order-tab.active {
+            border-bottom: 2px solid #4CAF50;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .admin-container {
+            padding: 90px 0 50px;
+        }
+        .order-list {
+            background-color: #fff;
+        }
+        .order-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .order-no {
+            font-weight: bold;
+        }
+        .order-status {
+            color: #FF5722;
+        }
+        .order-time {
+            color: #666;
+            margin-bottom: 8px;
+            font-size: 12px;
+        }
+        .order-customer {
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .order-dishes {
+            color: #666;
+            margin-bottom: 8px;
+        }
+        .order-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .order-total {
+            font-weight: bold;
+            color: #FF5722;
+        }
+        .order-actions {
+            display: flex;
+        }
+        .order-action {
+            padding: 6px 12px;
+            margin-left: 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .order-action-primary {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+        }
+        .order-action-default {
+            border: 1px solid #999;
+            background-color: #fff;
+            color: #666;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .tab-item {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            color: #666;
+        }
+        .tab-item.active {
+            color: #4CAF50;
+        }
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .tab-text {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">订单管理</div>
+    </div>
+    
+    <div class="order-tabs">
+        <div class="order-tab active">全部</div>
+        <div class="order-tab">待支付</div>
+        <div class="order-tab">已支付</div>
+        <div class="order-tab">已完成</div>
+    </div>
+    
+    <div class="admin-container">
+        <div class="order-list">
+            <div class="order-item">
+                <div class="order-header">
+                    <div class="order-no">订单 #20230520123456</div>
+                    <div class="order-status">待支付</div>
+                </div>
+                <div class="order-time">2023-05-20 12:34:56</div>
+                <div class="order-customer">顾客: 张三 (桌号: A12)</div>
+                <div class="order-dishes">菜品: 招牌牛肉面 ×1, 香辣鸡腿堡 ×2</div>
+                <div class="order-footer">
+                    <div class="order-total">¥72.00</div>
+                    <div class="order-actions">
+                        <button class="order-action order-action-default">拒绝</button>
+                        <button class="order-action order-action-primary">接单</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-item">
+                <div class="order-header">
+                    <div class="order-no">订单 #20230519876543</div>
+                    <div class="order-status">已支付</div>
+                </div>
+                <div class="order-time">2023-05-19 18:30:25</div>
+                <div class="order-customer">顾客: 李四 (外卖)</div>
+                <div class="order-dishes">菜品: 蔬菜沙拉 ×1, 鲜榨橙汁 ×2</div>
+                <div class="order-footer">
+                    <div class="order-total">¥48.00</div>
+                    <div class="order-actions">
+                        <button class="order-action order-action-primary">完成</button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="order-item">
+                <div class="order-header">
+                    <div class="order-no">订单 #20230518765432</div>
+                    <div class="order-status">已完成</div>
+                </div>
+                <div class="order-time">2023-05-18 11:20:15</div>
+                <div class="order-customer">顾客: 王五 (桌号: B05)</div>
+                <div class="order-dishes">菜品: 招牌牛肉面 ×2, 鲜榨橙汁 ×1</div>
+                <div class="order-footer">
+                    <div class="order-total">¥71.00</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon">🍽️</div>
+            <div class="tab-text">菜品管理</div>
+        </div>
+        <div class="tab-item active">
+            <div class="tab-icon">📋</div>
+            <div class="tab-text">订单管理</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-text">账户</div>
+        </div>
+    </div>
+</body>
+</html>

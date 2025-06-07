@@ -1,0 +1,85 @@
+<!--购物车页面-->
+<view class="page-container">
+  <!-- 头部栏 -->
+  <view class="header">
+    <view class="header-title">购物车</view>
+    <button class="clear-btn" bindtap="onClearCart" disabled="{{isEmpty}}">
+      清空
+    </button>
+  </view>
+
+  <!-- 主内容区域 -->
+  <view class="cart-container">
+    <!-- 加载状态 -->
+    <view wx:if="{{loading}}" class="loading-container">
+      <view class="loading-text">加载中...</view>
+    </view>
+
+    <!-- 购物车为空状态 -->
+    <view wx:elif="{{isEmpty}}" class="cart-empty">
+      <image class="cart-empty-icon" src="/images/empty-cart.png" mode="aspectFit"></image>
+      <view class="cart-empty-text">购物车还是空的，快去点餐吧~</view>
+      <button class="go-shopping-btn" bindtap="onGoShopping">去购物</button>
+    </view>
+
+    <!-- 购物车商品列表 -->
+    <view wx:else class="cart-items">
+      <view 
+        class="cart-item" 
+        wx:for="{{cartItems}}" 
+        wx:key="dish_id"
+        bindtap="onItemTap"
+        data-dish-id="{{item.dish_id}}"
+      >
+        <image 
+          class="cart-item-image" 
+          src="{{item.dish_image || '/images/default-dish.png'}}" 
+          mode="aspectFill"
+          lazy-load
+        ></image>
+        
+        <view class="cart-item-info">
+          <view class="cart-item-name">{{item.dish_name}}</view>
+          <view class="cart-item-price">¥{{item.dish_price}}</view>
+        </view>
+        
+        <view class="cart-item-actions">
+          <view class="quantity-control">
+            <button 
+              class="quantity-btn decrease-btn" 
+              bindtap="onDecreaseQuantity"
+              data-dish-id="{{item.dish_id}}"
+              catchtap="true"
+            >-</button>
+            <text class="quantity">{{item.quantity}}</text>
+            <button 
+              class="quantity-btn increase-btn" 
+              bindtap="onIncreaseQuantity"
+              data-dish-id="{{item.dish_id}}"
+              catchtap="true"
+            >+</button>
+          </view>
+          
+          <button 
+            class="delete-btn" 
+            bindtap="onDeleteItem"
+            data-dish-id="{{item.dish_id}}"
+            data-dish-name="{{item.dish_name}}"
+            catchtap="true"
+          >×</button>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 结算栏 -->
+  <view wx:if="{{!isEmpty}}" class="checkout-bar">
+    <view class="total-info">
+      <text class="total-label">合计：</text>
+      <text class="total-price">¥{{totalAmount}}</text>
+    </view>
+    <button class="checkout-btn" bindtap="onCheckout">
+      去结算（{{totalCount}}）
+    </button>
+  </view>
+</view> 

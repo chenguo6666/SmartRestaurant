@@ -1,0 +1,155 @@
+/* index.wxss */
+
+.container {
+  padding: 0;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  min-height: 100vh;
+  position: relative;
+}
+
+/* 品牌区域 */
+.brand-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80rpx 40rpx 60rpx;
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+}
+
+.restaurant-logo {
+  width: 120rpx;
+  height: 120rpx;
+  margin-bottom: 30rpx;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-img {
+  width: 80rpx;
+  height: 80rpx;
+}
+
+.restaurant-name {
+  font-size: 48rpx;
+  font-weight: bold;
+  margin-bottom: 15rpx;
+  text-align: center;
+}
+
+.restaurant-slogan {
+  font-size: 28rpx;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* 功能入口区域 */
+.action-section {
+  padding: 60rpx 40rpx;
+  background: #fff;
+  border-radius: 30rpx 30rpx 0 0;
+  margin-top: -30rpx;
+  position: relative;
+  z-index: 2;
+}
+
+.primary-btn {
+  width: 100%;
+  background: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 20rpx;
+  padding: 40rpx 0;
+  margin-bottom: 30rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: 0 8rpx 20rpx rgba(76, 175, 80, 0.3);
+}
+
+.primary-btn::after {
+  border: none;
+}
+
+.secondary-btn {
+  width: 100%;
+  background: #fff;
+  color: #4CAF50;
+  border: 2rpx solid #4CAF50;
+  border-radius: 20rpx;
+  padding: 40rpx 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.secondary-btn::after {
+  border: none;
+}
+
+.btn-text {
+  font-size: 32rpx;
+  font-weight: bold;
+  margin-bottom: 10rpx;
+}
+
+.btn-desc {
+  font-size: 24rpx;
+  opacity: 0.8;
+}
+
+/* 餐厅信息区域 */
+.info-section {
+  padding: 40rpx;
+  background: #fff;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25rpx 0;
+  border-bottom: 1rpx solid #f0f0f0;
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  font-size: 28rpx;
+  color: #666;
+}
+
+.info-value {
+  font-size: 28rpx;
+  color: #333;
+  font-weight: 500;
+}
+
+/* 底部区域 */
+.footer-section {
+  padding: 40rpx;
+  background: #fff;
+  text-align: center;
+}
+
+.footer-text {
+  font-size: 24rpx;
+  color: #999;
+}
+
+/* 按钮点击效果 */
+.primary-btn:active {
+  background: #45a049;
+  transform: scale(0.98);
+}
+
+.secondary-btn:active {
+  background: #f0f0f0;
+  transform: scale(0.98);
+}

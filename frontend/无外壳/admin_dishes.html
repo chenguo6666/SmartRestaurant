@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>菜品管理 - 绿色餐厅管理端</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            z-index: 100;
+        }
+        .header-title {
+            font-weight: bold;
+        }
+        .admin-tabs {
+            display: flex;
+            position: fixed;
+            top: 50px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            z-index: 90;
+        }
+        .admin-tab {
+            flex: 1;
+            padding: 12px 0;
+            text-align: center;
+            border-bottom: 2px solid transparent;
+        }
+        .admin-tab.active {
+            border-bottom: 2px solid #4CAF50;
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        .admin-container {
+            padding: 100px 0 50px;
+        }
+        .category-list {
+            background-color: #fff;
+            margin-bottom: 10px;
+        }
+        .category-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            align-items: center;
+        }
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        .category-actions {
+            display: flex;
+        }
+        .category-action {
+            margin-left: 15px;
+            color: #4CAF50;
+        }
+        .add-category-btn {
+            display: block;
+            width: calc(100% - 30px);
+            margin: 15px auto;
+            padding: 12px 0;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 16px;
+        }
+        .dish-list {
+            background-color: #fff;
+        }
+        .dish-item {
+            display: flex;
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .dish-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 5px;
+            object-fit: cover;
+            margin-right: 10px;
+        }
+        .dish-info {
+            flex: 1;
+        }
+        .dish-name {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .dish-price {
+            color: #FF5722;
+            font-weight: bold;
+        }
+        .dish-status {
+            color: #666;
+            font-size: 12px;
+        }
+        .dish-status.on {
+            color: #4CAF50;
+        }
+        .dish-status.off {
+            color: #999;
+        }
+        .dish-actions {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-end;
+        }
+        .dish-action {
+            color: #4CAF50;
+            font-size: 12px;
+        }
+        .add-dish-btn {
+            position: fixed;
+            bottom: 60px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 24px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .tab-item {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            color: #666;
+        }
+        .tab-item.active {
+            color: #4CAF50;
+        }
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .tab-text {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">菜品管理</div>
+    </div>
+    
+    <div class="admin-tabs">
+        <div class="admin-tab active">分类管理</div>
+        <div class="admin-tab">菜品列表</div>
+    </div>
+    
+    <div class="admin-container">
+        <!-- 分类管理视图 -->
+        <div class="category-list">
+            <div class="category-item">
+                <span>热销</span>
+                <div class="category-actions">
+                    <span class="category-action">编辑</span>
+                    <span class="category-action">删除</span>
+                </div>
+            </div>
+            <div class="category-item">
+                <span>主食</span>
+                <div class="category-actions">
+                    <span class="category-action">编辑</span>
+                    <span class="category-action">删除</span>
+                </div>
+            </div>
+            <div class="category-item">
+                <span>小吃</span>
+                <div class="category-actions">
+                    <span class="category-action">编辑</span>
+                    <span class="category-action">删除</span>
+                </div>
+            </div>
+            <div class="category-item">
+                <span>饮品</span>
+                <div class="category-actions">
+                    <span class="category-action">编辑</span>
+                    <span class="category-action">删除</span>
+                </div>
+            </div>
+            <button class="add-category-btn">添加新分类</button>
+        </div>
+        
+        <!-- 菜品列表视图 (默认隐藏) -->
+        <!--
+        <div class="dish-list">
+            <div class="dish-item">
+                <img src="https://via.placeholder.com/60" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">招牌牛肉面</div>
+                    <div class="dish-price">¥28.00</div>
+                    <div class="dish-status on">上架中</div>
+                </div>
+                <div class="dish-actions">
+                    <div>
+                        <span class="dish-action">编辑</span>
+                        <span class="dish-action">删除</span>
+                    </div>
+                    <span class="dish-action">下架</span>
+                </div>
+            </div>
+            
+            <div class="dish-item">
+                <img src="https://via.placeholder.com/60" alt="菜品图片" class="dish-image">
+                <div class="dish-info">
+                    <div class="dish-name">香辣鸡腿堡</div>
+                    <div class="dish-price">¥22.00</div>
+                    <div class="dish-status off">已下架</div>
+                </div>
+                <div class="dish-actions">
+                    <div>
+                        <span class="dish-action">编辑</span>
+                        <span class="dish-action">删除</span>
+                    </div>
+                    <span class="dish-action">上架</span>
+                </div>
+            </div>
+        </div>
+        <button class="add-dish-btn">+</button>
+        -->
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item active">
+            <div class="tab-icon">🍽️</div>
+            <div class="tab-text">菜品管理</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">📋</div>
+            <div class="tab-text">订单管理</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-text">账户</div>
+        </div>
+    </div>
+</body>
+</html>

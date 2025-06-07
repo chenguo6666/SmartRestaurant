@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>订单确认 - 绿色餐厅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        }
+        body {
+            background-color: #f5f5f5;
+            color: #333;
+            font-size: 14px;
+            line-height: 1.5;
+        }
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 10px 15px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            z-index: 100;
+        }
+        .header-title {
+            font-weight: bold;
+        }
+        .container {
+            padding: 50px 0 120px;
+        }
+        .section {
+            background-color: #fff;
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 8px;
+        }
+        .section-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #4CAF50;
+        }
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .order-item:last-child {
+            border-bottom: none;
+        }
+        .order-item-name {
+            flex: 2;
+        }
+        .order-item-price {
+            flex: 1;
+            text-align: right;
+            color: #FF5722;
+        }
+        .order-item-quantity {
+            flex: 1;
+            text-align: center;
+        }
+        .price-detail {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+        }
+        .price-total {
+            font-weight: bold;
+            color: #FF5722;
+            font-size: 16px;
+        }
+        .coupon-select {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .coupon-arrow {
+            color: #999;
+        }
+        .remark-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            margin-top: 5px;
+        }
+        .checkout-bar {
+            position: fixed;
+            bottom: 50px;
+            left: 0;
+            right: 0;
+            background-color: #fff;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 90;
+        }
+        .total-price {
+            font-size: 18px;
+            color: #FF5722;
+            font-weight: bold;
+        }
+        .submit-btn {
+            padding: 12px 30px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .tab-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            background-color: #fff;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            z-index: 100;
+        }
+        .tab-item {
+            flex: 1;
+            padding: 8px 0;
+            text-align: center;
+            color: #666;
+        }
+        .tab-icon {
+            font-size: 20px;
+            margin-bottom: 2px;
+        }
+        .tab-text {
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-title">订单确认</div>
+    </div>
+    
+    <div class="container">
+        <div class="section">
+            <div class="section-title">订单商品</div>
+            <div class="order-item">
+                <div class="order-item-name">招牌牛肉面</div>
+                <div class="order-item-quantity">×1</div>
+                <div class="order-item-price">¥28.00</div>
+            </div>
+            <div class="order-item">
+                <div class="order-item-name">香辣鸡腿堡</div>
+                <div class="order-item-quantity">×2</div>
+                <div class="order-item-price">¥44.00</div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">优惠信息</div>
+            <div class="coupon-select">
+                <span>优惠券</span>
+                <span class="coupon-arrow">暂无可用 ></span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">订单金额</div>
+            <div class="price-detail">
+                <span>商品总额</span>
+                <span>¥72.00</span>
+            </div>
+            <div class="price-detail">
+                <span>优惠金额</span>
+                <span>-¥0.00</span>
+            </div>
+            <div class="price-detail price-total">
+                <span>应付总计</span>
+                <span>¥72.00</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">备注</div>
+            <textarea class="remark-input" placeholder="请输入口味偏好、特殊要求等"></textarea>
+        </div>
+    </div>
+    
+    <div class="checkout-bar">
+        <div>
+            <span>应付：</span>
+            <span class="total-price">¥72.00</span>
+        </div>
+        <button class="submit-btn">提交订单</button>
+    </div>
+    
+    <div class="tab-bar">
+        <div class="tab-item">
+            <div class="tab-icon">🍔</div>
+            <div class="tab-text">菜单</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">🛒</div>
+            <div class="tab-text">购物车</div>
+        </div>
+        <div class="tab-item">
+            <div class="tab-icon">👤</div>
+            <div class="tab-text">我的</div>
+        </div>
+    </div>
+</body>
+</html>
